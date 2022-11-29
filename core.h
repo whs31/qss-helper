@@ -16,6 +16,11 @@ public:
     Core(QWidget *parent = nullptr, const QColor &clear_color = QColor(Qt::black));
     ~Core();
 
+private slots:
+    void on_header_closeButton_clicked();
+    void on_header_minmaxButton_clicked();
+    void on_header_minButton_clicked();
+
 private:
     Ui::Core *ui;
 };

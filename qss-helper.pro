@@ -10,13 +10,61 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    core.cpp
+    core.cpp \
+
 
 HEADERS += \
-    core.h
+    core.h \
+    windowextension/extension.h \
 
 FORMS += \
     core.ui
+
+INCLUDEPATH += windowextension/
+
+win32 {
+equals(QT_MAJOR_VERSION, 5){
+QT += winextras
+}
+
+SOURCES += \
+    windowextension/shadow.cpp \
+    windowextension/extension.cpp \
+
+HEADERS += \
+    windowextension/common.h \
+    windowextension/shadow.h
+
+LIBS += -lUser32 -lGdi32
+
+DEFINES += QGOODWINDOW
+CONFIG += qgoodwindow
+}
+
+unix:!mac:!android {
+equals(QT_MAJOR_VERSION, 5){
+QT += testlib x11extras
+}
+
+equals(QT_MAJOR_VERSION, 6){
+QT += gui-private
+}
+
+SOURCES += \
+    windowextension/shadow.cpp \
+    windowextesion/extension.cpp \
+
+HEADERS += \
+    windowextension/shadow.h
+
+LIBS += -lX11
+
+CONFIG += link_pkgconfig
+PKGCONFIG += gtk+-2.0
+
+DEFINES += QGOODWINDOW
+CONFIG += qgoodwindow
+}
 
 TRANSLATIONS += \
     qss-helper_ru_RU.ts

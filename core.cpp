@@ -15,6 +15,17 @@ Core::~Core()
 }
 
 void Core::on_header_closeButton_clicked()  { QApplication::quit();                                          }
-void Core::on_header_minmaxButton_clicked() { if(!isMaximized()) { showMaximized(); } else { showNormal(); } }
 void Core::on_header_minButton_clicked()    { showMinimized();                                               }
-
+void Core::on_header_minmaxButton_clicked()
+{
+    if(!isMaximized())
+    {
+        showMaximized();
+        ui->header_minmaxButton->setIcon(QIcon(":/resources/ui/restore.png"));
+    }
+    else
+    {
+        showNormal();
+        ui->header_minmaxButton->setIcon(QIcon(":/resources/ui/maximize.png"));
+    }
+}

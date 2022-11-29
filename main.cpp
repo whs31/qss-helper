@@ -3,6 +3,9 @@
 #include <QApplication>
 #include <QLocale>
 #include <QTranslator>
+#include <qqml.h>
+#include <QQmlApplicationEngine>
+#include <QQuickStyle>
 
 int main(int argc, char *argv[])
 {
@@ -17,6 +20,8 @@ int main(int argc, char *argv[])
             break;
         }
     }
+    QQuickStyle::setStyle("Material");
+    qputenv("QT_QUICK_CONTROLS_MATERIAL_VARIANT", "Dense");
     Core w;
     w.show();
     return a.exec();
